@@ -142,6 +142,10 @@ class CfgMissions
 		{
 			directory="overthrow_main\campaign\missions\OverthrowMpLivonia.Enoch";
 		};
+		class OverthrowMpLythium
+		{
+			directory="overthrow_main\campaign\missions\OverthrowMpLythium.Lythium";
+		};
 	};
 };
 
