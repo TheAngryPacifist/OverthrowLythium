@@ -15,6 +15,7 @@ if(!dialog) then {
 				player setVariable ["OT_tute_trigger",false,true];
 				[] spawn {
 					hint format["Take some time to explore the main menu, when you're finished open the map (%1 key)","ShowMap" call OT_fnc_getAssignedKey];
+
 					private _acekey = "Left Windows (default)";
 					private _acebind = ["ACE3 Common","ace_interact_menu_InteractKey"] call CBA_fnc_getKeybind;
 					if(count _acebind > 0) then {

@@ -98,7 +98,7 @@ OT_highPopHouses = [];
         if(_cost > 25000) then {OT_medPopHouses pushback _name;};
         OT_lowPopHouses pushback _name;
     };
-}foreach("(getNumber (_x >> 'scope') > 0) && (configName _x isKindOf 'House') && (configName _x find '_House' > -1)" configClasses (configfile >> "CfgVehicles"));
+}foreach("(getNumber (_x >> 'scope') isEqualTo 2) && (configName _x isKindOf 'House') && (configName _x find '_House' > -1)" configClasses (configfile >> "CfgVehicles"));
 
 OT_allBuyableBuildings = OT_lowPopHouses + OT_medPopHouses + OT_highPopHouses + OT_hugePopHouses + OT_mansions + [OT_item_Tent,OT_flag_IND];
 
@@ -175,10 +175,10 @@ OT_item_DefaultBlueprints = [];
 
 OT_itemCategoryDefinitions = [
     ["General",["ACE_fieldDressing","Banana","Map","ToolKit","Compass","ACE_EarPlugs","Watch","Radio","Compass","ACE_Spraypaint","Altimiter","MapTools","Binocular"]],
-    ["Pharmacy",["Dressing","Bandage","morphine","adenosine","atropine","ACE_EarPlugs","epinephrine","bodyBag","quikclot","salineIV","bloodIV","plasmaIV","personalAidKit","surgicalKit","tourniquet"]],
-    ["Electronics",["Rangefinder","Cellphone","Radio","Watch","GPS","monitor","DAGR","_dagr","Battery","ATragMX","ACE_Flashlight","I_UavTerminal"]],
+    ["Pharmacy",["Dressing","Bandage","morphine","adenosine","atropine","ACE_EarPlugs","epinephrine","bodyBag","quikclot","salineIV","bloodIV","plasmaIV","personalAidKit","surgicalKit","tourniquet","splint"]],
+    ["Electronics",["Rangefinder","Cellphone","Radio","Watch","GPS","monitor","DAGR","_dagr","Battery","ATragMX","ACE_Flashlight","I_UavTerminal","ACE_Kestrel4500"]],
     ["Hardware",["Tool","CableTie","ACE_Spraypaint","wirecutter","ACE_rope"]],
-    ["Surplus",["Rangefinder","Binocular","Compass","RangeCard","RangeTable","defusalKit","SpottingScope","ACE_Vector","ACE_Yardage"]]
+    ["Surplus",["Rangefinder","Binocular","Compass","RangeCard","RangeTable","defusalKit","SpottingScope","ACE_Vector","ACE_Yardage","ACE_Kestrel4500"]]
 ];
 
 OT_items = [];
@@ -201,6 +201,8 @@ OT_staticBackpacks = [
 ];
 
 OT_backpacks = [
+	['ACE_NVG_Gen4',[10000,0,0,200]],
+	['ACE_NVG_Wide',[10000,0,0,400]],
 	["B_AssaultPack_cbr",20,0,0,1],
 	["B_AssaultPack_blk",20,0,0,1],
 	["B_AssaultPack_khk",20,0,0,1],
@@ -976,7 +978,7 @@ OT_Buildables = [
 	["Workshop",1000,[
 		["Land_Cargo_House_V4_F",[0,0,0],0,1,0,[],"","",true,false],
 		["Land_ClutterCutter_large_F",[0,0,0],0,1,0,[],"","",true,false],
-		["Box_NATO_AmmoVeh_F",[-2.91,-2.008,0],90,1,0,[],"","",true,false],
+		["Box_NATO_AmmoVeh_F",[-2.91,-3.2,0],90,1,0,[],"","",true,false],
 		["Land_WeldingTrolley_01_F",[-3.53163,1.73366,0],87.0816,1,0,[],"","",true,false],
 		["Land_ToolTrolley_02_F",[-3.47775,3.5155,0],331.186,1,0,[],"","",true,false]
 	],"OT_fnc_initWorkshop",true,"Attach weapons to vehicles"],
@@ -1000,7 +1002,7 @@ OT_Buildables = [
 //Items you can place
 OT_Placeables = [
 	["Sandbags",20,["Land_BagFence_Short_F","Land_BagFence_Round_F","Land_BagFence_Long_F","Land_BagFence_End_F","Land_BagFence_Corner_F","Land_BagFence_01_long_green_F","Land_BagFence_01_short_green_F","Land_BagFence_01_round_green_F","Land_BagFence_01_corner_green_F","Land_BagFence_01_end_green_F"],[0,3,0.8],"Bags filled with lots of sand. Apparently this can stop bullets or something?"],
-	["Camo Nets",40,["Land_MedicalTent_01_white_generic_open_F","Land_MedicalTent_01_MTP_open","Land_TentHanger_V1_F","CamoNet_INDP_open_F","CamoNet_INDP_F","CamoNet_ghex_F","CamoNet_ghex_open_F","CamoNet_ghex_big_F"],[0,7,2],"Large && terribly flimsy structures that may or may not obscure your forces from airborne units."],
+	["Camo Nets",40,["Land_MedicalTent_01_white_generic_open_F","Land_MedicalTent_01_NATO_generic_open_F","Land_TentHangar_V1_F","CamoNet_INDP_open_F","CamoNet_INDP_F","CamoNet_ghex_F","CamoNet_ghex_open_F","CamoNet_ghex_big_F"],[0,7,2],"Large && terribly flimsy structures that may or may not obscure your forces from airborne units."],
 	["Barriers",60,["Land_HBarrier_1_F","Land_HBarrier_3_F","Land_HBarrier_5_F","Land_HBarrier_Big_F","Land_HBarrierWall_corner_F","Land_HBarrier_01_line_5_green_F","Land_HBarrier_01_line_3_green_F","Land_HBarrier_01_line_1_green_F"],[0,4,1.2],"Really big sandbags, basically."],
 	["Map",30,[OT_item_Map],[0,2,1.2],"Use these to save your game, change options or check town info."],
 	["Safe",50,[OT_item_Safe],[0,2,0.5],"Store && retrieve money"],
