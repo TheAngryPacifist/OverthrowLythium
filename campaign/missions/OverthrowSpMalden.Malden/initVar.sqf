@@ -168,9 +168,9 @@ OT_CRIM_Launchers = ["launch_RPG32_F","launch_RPG7_F","launch_RPG7_F","launch_RP
 
 OT_piers = ["Land_PierConcrete_01_4m_ladders_F","Land_PierWooden_01_platform_F","Land_PierWooden_01_hut_F","Land_PierWooden_02_hut_F"]; //spawns dudes that sell boats n stuff
 OT_offices = ["Land_MultistoryBuilding_01_F","Land_MultistoryBuilding_04_F"];
-OT_portBuildings = ["Land_Warehouse_01_F","Land_Warehouse_02_F","Land_ContainerLine_01_F","Land_ContainerLine_02_F","Land_ContainerLine_03_F","Land_jbad_hangar_2"];
+OT_portBuildings = ["Land_Warehouse_01_F","Land_Warehouse_02_F","Land_ContainerLine_01_F","Land_ContainerLine_02_F","Land_ContainerLine_03_F"];
 OT_airportTerminals = ["Land_Airport_01_terminal_F","Land_Airport_02_terminal_F","Land_Hangar_F"];
-OT_portBuilding = "Land_WarehouseShelter_01_F";
+OT_portBuilding = ["Land_WarehouseShelter_01_F"];
 OT_policeStation = "Land_Cargo_House_V3_F";
 OT_warehouse = "Land_Warehouse_03_F";
 OT_warehouses = [OT_warehouse,"Land_dp_smallFactory_F","Land_i_Shed_Ind_F"];
