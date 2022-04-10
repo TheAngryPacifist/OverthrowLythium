@@ -346,6 +346,7 @@ class CfgFunctions
 			class getRandomRoadPosition {};
 			class isRadarInRange {};
 			class positionIsAtWarehouse {};
+			class nearestWarehouse {};
 		};
 
 		/*

@@ -109,10 +109,13 @@ private _hasList_buildableHouses = false;
 				{
 					if(!isNil "_x") then {
 						if(_x isEqualType []) then {
-							_x params [["_itemClass","",[""]],["_itemCount",0,[0]]];
-							if (_itemCount > 0 && !(_itemClass isEqualTo "")) then {
-								warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
-							};
+							private _warehouse = (_x # 0) call OT_fnc_nearestWarehouse;
+							{
+								_x params [["_itemClass","",[""]],["_itemCount",0,[0]]];
+								if (_itemCount > 0 && (_itemClass isNotEqualTo "")) then {
+									_warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
+								};
+							} forEach (_x # 1);
 						};
 					};
 				}foreach(_val);
@@ -132,6 +135,10 @@ private _hasList_buildableHouses = false;
 			};
 		};
 		_set = false;
+	};
+	if (_key == "warehouselist") then {
+		private _warehouses = _val apply {_x call OT_fnc_nearestWarehouse};
+		warehouse setVariable ["owned", _warehouses, true];
 	};
 	if(_key == "vehicles") then {
 		_set = false;

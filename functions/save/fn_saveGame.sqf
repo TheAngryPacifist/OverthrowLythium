@@ -178,10 +178,23 @@ if !(_quiet) then {
 };
 
 private _warehouse = [2]; //First element is save version
-_warehouse append ((allVariables warehouse) select {((toLower _x select [0,5]) isEqualTo "item_")} apply {
-	warehouse getVariable _x
-});
+//_warehouse append ((allVariables warehouse) select {((toLower _x select [0,5]) isEqualTo "item_")} apply {
+//	warehouse getVariable _x
+//});
+
+private _warehouselist = warehouse getVariable ["owned", []];
+{
+	private _currentWarehouse = _x;
+	_warehouse pushBack [
+		getPosATL _currentWarehouse,
+		(allVariables _currentWarehouse) select {((toLower _x select [0,5]) isEqualTo "item_")} apply {_currentWarehouse getVariable _x}
+	];
+} forEach _warehouselist;
+
+private _warehouselistsave = _warehouselist apply {getPosATL _x};
+
 _data pushback ["warehouse",_warehouse];
+_data pushback ["warehouselist", _warehouselistsave];
 
 if !(_quiet) then {
 	"Step 7/11 - Saving recruits" remoteExecCall ["OT_fnc_notifyAndLog",0,false];

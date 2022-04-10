@@ -4,6 +4,9 @@ if(_ammobox isEqualTo false) then {
     _ammobox = _target;
 };
 
+private _warehouse = player call OT_fnc_nearestWarehouse;
+if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
+
 private _weapons = [];
 private _magazines = [];
 private _items = ["ItemMap"];
@@ -18,12 +21,12 @@ if(_target isEqualType "") then {
     _unit linkItem "ItemMap";
     {
         if(_x select [0,5] isEqualTo "item_") then {
-            private _d = warehouse getVariable [_x,[_x select [5],0,[0]]];
+            private _d = _warehouse getVariable [_x,[_x select [5],0,[0]]];
             if(_d isEqualType []) then {
                 _items pushback _d#0;
             };
         };
-    }foreach(allVariables warehouse);
+    }foreach(allVariables _warehouse);
 
     _closed = ["ace_arsenal_displayClosed", {
         _thisArgs params ["_unit"];
