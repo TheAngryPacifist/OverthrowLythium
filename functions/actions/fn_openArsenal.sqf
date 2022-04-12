@@ -4,9 +4,6 @@ if(_ammobox isEqualTo false) then {
     _ammobox = _target;
 };
 
-private _warehouse = player call OT_fnc_nearestWarehouse;
-if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
-
 private _weapons = [];
 private _magazines = [];
 private _items = ["ItemMap"];
@@ -17,6 +14,10 @@ private _closed = -1;
 private _missing = [];
 
 if(_target isEqualType "") then {
+    private _warehouse = player call OT_fnc_nearestWarehouse;
+    if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
+
+
     [_unit,true] call OT_fnc_dumpIntoWarehouse;
     _unit linkItem "ItemMap";
     {
