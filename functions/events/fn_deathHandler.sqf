@@ -2,9 +2,9 @@ params ["_me",["_killer", objNull]];
 
 if !(local _me) exitWith {}; //Only run this on the machine where unit is local
 
-if ((isNull _killer) || {_killer == _me}) then {
+if ((isNull _killer)) then {
 	private _aceSource = _me getVariable ["ace_medical_lastDamageSource", objNull];
-	if ((!isNull _aceSource) && {_aceSource != _unit}) then {
+	if ((!isNull _aceSource)) then {
 		_killer = _aceSource;
 	};
 };

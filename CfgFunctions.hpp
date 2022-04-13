@@ -443,6 +443,7 @@ class CfgFunctions
 			class findScopeInWarehouse {};
 			class findWeaponInWarehouse {};
 			class findVestInWarehouse {};
+			class verifyFromWarehouse {};
 			class verifyLoadoutFromWarehouse {};
 			class applyLoadoutFromWarehouse {};
 			class qtyInWarehouse {};

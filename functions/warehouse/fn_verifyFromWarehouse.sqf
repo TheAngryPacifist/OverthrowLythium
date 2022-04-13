@@ -1,9 +1,9 @@
 
 // This file is responsible for handling item verification -
-// for NPC's, player item verification method was updated -
-// and is now handled by fn_verifyFromWarehouse
+// for players, NPC item verification method is handled by-
+// fn_verifyLoadoutFromWarehouse
 
-params ["_unit",["_correct",true]];
+params ["_unit","_newItems",["_correct",true]];
 
 private _warehouse = _unit call OT_fnc_nearestWarehouse;
 if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
@@ -12,6 +12,8 @@ private _ignore = [];
 {
     _x params [["_cls",""], ["_count",0]];
     if !(_cls in _ignore) then {
+        // These are handled below, so don't do it here.
+        if (_cls == backpack _unit || _cls == vest _unit || _cls == headgear _unit || _cls == goggles _unit) exitWith {};
         private _boxAmount = (_warehouse getVariable [format["item_%1",_cls],[_cls,0]]) select 1;
         if(_boxAmount < _count) then {
             //take off the difference
@@ -21,19 +23,34 @@ private _ignore = [];
                     _count = 0;
                     _missing pushback _cls;
                 };
+                if(_cls in primaryWeaponItems _unit) exitWith {
+                     if(_correct) then {_unit removePrimaryWeaponItem _cls};
+                    _count = 0;
+                    _missing pushback _cls;
+                };
                 if(primaryWeapon _unit isEqualTo _cls) exitWith {
                     if(_correct) then {
-                        _ignore append primaryWeaponItems _unit;
-                        _unit removeWeapon _cls;_unit removeWeapon _cls;
+                        //_ignore append primaryWeaponItems _unit;
+                        _unit removeWeapon _cls;
                     };
+                    _count = 0;
+                    _missing pushback _cls;
+                };
+                if(_cls in secondaryWeaponItems _unit) exitWith {
+                    if(_correct) then {_unit removeSecondaryWeaponItem _cls};
                     _count = 0;
                     _missing pushback _cls;
                 };
                 if(secondaryWeapon _unit isEqualTo _cls) exitWith {
                     if(_correct) then {
-                        _ignore append secondaryWeaponItems _unit;
+                        //_ignore append secondaryWeaponItems _unit;
                         _unit removeWeapon _cls;
                     };
+                    _count = 0;
+                    _missing pushback _cls;
+                };
+                if(_cls in handgunItems _unit) exitWith {
+                    if(_correct) then {_unit removeHandgunItem _cls};
                     _count = 0;
                     _missing pushback _cls;
                 };
@@ -55,14 +72,14 @@ private _ignore = [];
                     if(_correct) then {_unit removeItem _cls};
                     _missing pushback _cls;
                 };
-            }
+            };
         };
 
         if(_count > 0) then {
             [_cls, _count] call OT_fnc_removeFromWarehouse;
         };
     };
-}foreach(_unit call OT_fnc_unitStock);
+}foreach(_newItems);
 
 {
     if !(_x isEqualTo "ItemMap") then {
