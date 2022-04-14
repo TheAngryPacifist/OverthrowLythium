@@ -6,14 +6,15 @@ _SearchTerm = ctrlText 1700;
 private _warehouse = player call OT_fnc_nearestWarehouse;
 if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
 
-private _itemVars = (allVariables _warehouse) select {((toLower _x select [0,5]) isEqualTo "item_")};
+private _itemVars = (allVariables _warehouse) select {((toLowerANSI _x select [0,5]) isEqualTo "item_")};
 _itemVars sort true;
 private _numitems = 0;
 {
 	private _d = _warehouse getVariable [_x,false];
 	if(_d isEqualType []) then {
 		_d params [["_cls","",[""]], ["_num",0,[0]]];
-		if(tolower(_cls) find _SearchTerm > -1) then {
+		private _displayName = _cls call OT_fnc_anythingGetName;
+		if(toLowerANSI _displayName find toLowerANSI _SearchTerm > -1) then {
 			if ((_cls isEqualType "") && _num > 0) then {
 				_numitems = _numitems + 1;
 				([_cls] call {

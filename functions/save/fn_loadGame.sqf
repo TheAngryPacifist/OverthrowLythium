@@ -112,12 +112,14 @@ private _hasList_buildableHouses = false;
 						if(_currentVal isEqualType []) then {
 							private _warehouse = (_currentVal # 0) call OT_fnc_nearestWarehouse;
 							{
-								_x params [
-									["_itemClass","",[""]],
-									["_itemCount",0,[0]]
-								];
-								if (_itemCount > 0 && (_itemClass isNotEqualTo "")) then {
-									_warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
+								if !(isNil "_x") then {
+									_x params [
+										["_itemClass","",[""]],
+										["_itemCount",0,[0]]
+									];
+									if (_itemCount > 0 && (_itemClass isNotEqualTo "")) then {
+										_warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
+									};
 								};
 							} forEach (_currentVal # 1);
 						};
