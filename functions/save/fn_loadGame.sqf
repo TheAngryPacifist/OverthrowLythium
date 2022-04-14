@@ -108,18 +108,26 @@ private _hasList_buildableHouses = false;
 				_val deleteAt 0;
 				{
 					if(!isNil "_x") then {
-						if(_x isEqualType []) then {
-							_x params [["_itemClass","",[""]],["_itemCount",0,[0]]];
-							if (_itemCount > 0 && !(_itemClass isEqualTo "")) then {
-								warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
-							};
+						private _currentVal = _x;
+						if(_currentVal isEqualType []) then {
+							private _warehouse = (_currentVal # 0) call OT_fnc_nearestWarehouse;
+							{
+								_x params [
+									["_itemClass","",[""]],
+									["_itemCount",0,[0]]
+								];
+								if (_itemCount > 0 && (_itemClass isNotEqualTo "")) then {
+									_warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
+								};
+							} forEach (_currentVal # 1);
 						};
 					};
 				}foreach(_val);
 			};
 			default {
 				{
-					_x params ["_itemClassL","_itemData"];
+					// This isn't used!
+					params ["_itemClassL","_itemData"];
 					if !(isNil "_itemData") then {
 						if (_itemData isEqualType []) then {
 							_itemData params ["_cls",["_num",0,[0]]];
@@ -132,6 +140,10 @@ private _hasList_buildableHouses = false;
 			};
 		};
 		_set = false;
+	};
+	if (_key == "warehouselist") then {
+		private _warehouses = _val apply {_x call OT_fnc_nearestWarehouse};
+		warehouse setVariable ["owned", _warehouses, true];
 	};
 	if(_key == "vehicles") then {
 		_set = false;
