@@ -50,6 +50,9 @@ if(_target isEqualType "") then {
                     if ((_y - _oldItemCount) > 0) then {
                         // The unit took the items!
                         _toVerify pushBack [_x, _y - _oldItemCount];
+                    } else {
+                        // The unit put some items in the warehouse.
+                        [_x, _oldItemCount - _y] call OT_fnc_addToWarehouse;
                     };
                 };
             };
