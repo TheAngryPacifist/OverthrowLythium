@@ -56,12 +56,12 @@ if ((_unit distance _point) < 200) then
 			while {_truth} do 
 			{
 				if ((_unit distance _nBuilding) <= 9) then {_truth = false;};
-				sleep 0.35;
+				sleep 0.25;
 			};
 
 			_unit removeMagazine _satchelMag;
 			private _mine = _satchelObj createVehicle (getposATL _unit);
-			_mine setDir ([_mine, _nBuilding] call BIS_fnc_dirTo);
+			_mine setDir (_mine getDir _nBuilding);
 			[_unit,"AinvPknlMstpSnonWnonDnon_Putdown_AmovPknlMstpSnonWnonDnon"] remoteExec ["Vcm_PMN",0];
 			 _unit action ["SetTimer", _unit, _mine];
 			
