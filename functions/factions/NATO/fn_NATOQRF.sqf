@@ -229,7 +229,7 @@ while {sleep 5; !_over} do {
 			};
 		};
 	}foreach(allunits);
-	if(_alive == 0) then {_enemy = _enemy * 2}; //If no NATO present, cap it faster
+	if(_alive == 0) then {_enemy = _enemy * 8}; //If no NATO present, cap it faster
 	if(time > _timeout && _alive isEqualTo 0 && _enemy isEqualTo 0) then {_enemy = 1};
 	_progresschange = (_alive - _enemy);
 	if(_progresschange < -20) then {_progresschange = -20};
