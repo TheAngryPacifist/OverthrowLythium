@@ -1,7 +1,7 @@
 private _cls = _this;
 
 //@todo: support literally anything, ie a player, civ, location
-if(_cls isKindOf "AllVehicles"or _cls isKindOf "Bag_Base") exitWith {
+if(_cls isKindOf "AllVehicles" or _cls isKindOf "Bag_Base") exitWith {
     _cls call OT_fnc_vehicleGetName;
 };
 if(_cls isKindOf ["Default",configFile >> "CfgWeapons"]) exitWith {

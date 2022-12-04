@@ -346,6 +346,7 @@ class CfgFunctions
 			class getRandomRoadPosition {};
 			class isRadarInRange {};
 			class positionIsAtWarehouse {};
+			class nearestWarehouse {};
 		};
 
 		/*
@@ -442,6 +443,7 @@ class CfgFunctions
 			class findScopeInWarehouse {};
 			class findWeaponInWarehouse {};
 			class findVestInWarehouse {};
+			class verifyFromWarehouse {};
 			class verifyLoadoutFromWarehouse {};
 			class applyLoadoutFromWarehouse {};
 			class qtyInWarehouse {};

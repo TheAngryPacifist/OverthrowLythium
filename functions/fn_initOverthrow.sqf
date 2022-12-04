@@ -20,8 +20,12 @@ players_NS = true call CBA_fnc_createNamespace;
 publicVariable "players_NS";
 cost = true call CBA_fnc_createNamespace;
 publicVariable "cost";
+
+// This namespace contains a list of warehouses -
+// instead of warehouse contents like in OT+
 warehouse = true call CBA_fnc_createNamespace;
 publicVariable "warehouse";
+
 spawner = true call CBA_fnc_createNamespace;
 publicVariable "spawner";
 templates = true call CBA_fnc_createNamespace;

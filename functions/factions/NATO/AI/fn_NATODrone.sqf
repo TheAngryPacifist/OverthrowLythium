@@ -13,7 +13,7 @@ while {sleep 10; alive _drone} do {
                 params ["_x","_drone","_targets"];
                 private _ty = typeof _x;
                 if((_x isKindOf "StaticWeapon") && (side _x != west)) exitWith {
-                    if(([_drone, "VIEW"] checkVisibility [position _drone,position _x]) > 0) then {
+                    if(([_drone, "VIEW"] checkVisibility [getPosASL _drone, getPosASL _x]) > 0) then {
                         _targets pushback ["SW",position _x,100,_x];
                     };
                 };
@@ -27,7 +27,7 @@ while {sleep 10; alive _drone} do {
                 };
                 if((count crew _x) > 0 && ((_x isKindOf "Car") || (_x isKindOf "Air") || (_x isKindOf "Ship")) && !(_ty in (OT_allVehicles+OT_allBoats+OT_helis))) exitWith {
                     if !(side _x isEqualTo west) then {
-                        if(([_drone, "VIEW"] checkVisibility [position _drone,position _x]) > 0) then {
+                        if(([_drone, "VIEW"] checkVisibility [getPosASL _drone, getPosASL _x]) > 0) then {
                             //determine threat
                             private _targetType = "V";
                             private _threat = 0;
@@ -54,17 +54,18 @@ while {sleep 10; alive _drone} do {
                     };
                 };
                 if(_ty isEqualTo OT_item_Storage) exitWith {
-                    if(([_drone, "VIEW"] checkVisibility [position _drone,position _x]) > 0) then {
+                    if(([_drone, "VIEW"] checkVisibility [getPosASL _drone,getPosASL _x]) > 0) then {
                         _targets pushback ["AMMO",position _x,25,_x];
                     };
                 };
             };
         };
-    }foreach((_drone nearObjects ["Static",500]) + (_drone nearObjects ["AllVehicles",500]));
+    }foreach((_drone nearObjects ["Static",500]) + (_drone nearEntities ["AllVehicles",500]));
 
     //look for concentrations of troops
-    _nummil = {side _x isEqualTo west} count (_drone nearObjects ["CAManBase",200]);
-    _numres = {side _x isEqualTo resistance} count (_drone nearObjects ["CAManBase",200]);
+    private _nearMen = _drone nearEntities ["CAManBase", 200];
+    private _numMil = {side _x isEqualTo west} count _nearMen;
+    private _numRes = {side _x isEqualTo resistance} count _nearMen;
     if(_nummil isEqualTo 0 && _numres > 7) then {
         _targets pushback ["INF",position _drone,100,_drone];
     };
