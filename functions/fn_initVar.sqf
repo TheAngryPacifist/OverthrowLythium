@@ -578,7 +578,7 @@ OT_allBLURifleMagazines = [];
 	private _weapons = [];
 
 	// These weapons and magazines will NEVER be given to units.
-	private _blacklist = ["Throw","Put","NLAW_F","rhs_weap_m79","rhs_mag_30Rnd_556x45_M200_Stanag"];
+	private _blacklist = ["Throw","Put","NLAW_F","rhs_weap_m79","rhs_mag_30Rnd_556x45_M200_Stanag","rhs_weap_m32"];
 
 	private _all = format["(getNumber( _x >> ""scope"" ) isEqualTo 2 ) && (getText( _x >> ""faction"" ) isEqualTo '%1')",_name] configClasses ( configFile >> "cfgVehicles" );
 	{

@@ -17,8 +17,9 @@ _unit addEventHandler ["HandleDamage", {
 	};
 }];
 
+/*
 if((random 100) < 75) then {
 	_unit setUnitLoadout [_unit call OT_fnc_getRandomLoadout, true];
 };
-
+*/
 _unit addEventHandler ["Dammaged", OT_fnc_EnemyDamagedHandler];
