@@ -1,9 +1,9 @@
 params ["_unit"];
-
+/*
 if((random 100) < 75) then {
 	_unit setUnitLoadout [_unit call OT_fnc_getRandomLoadout, true];
 };
-
+*/
 _unit addEventHandler ["HandleDamage", {
 	_me = _this select 0;
 	_src = _this select 3;
