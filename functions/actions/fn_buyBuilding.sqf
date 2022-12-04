@@ -42,7 +42,7 @@ if(_handled) then {
 		if (typeOf _building == OT_warehouse) then {
 			private _ownedWarehouses = warehouse getVariable ["owned", []];
 			_ownedWarehouses pushBack _building;
-			warehouse setVariable ["owned", _ownedWarehouses];
+			warehouse setVariable ["owned", _ownedWarehouses, true];
 		};
 
 		buildingpositions setVariable [_id,position _building,true];
