@@ -1,7 +1,6 @@
 OT_airportData = [
-    [[7083.24,7393.07,0],"Aéroport de Tanoa",1500],
-    [[11709,3150.79,0],"Saint-George Airstrip",1000],
-    [[2144.06,3462.68,0],"Bala Airstrip",900],
-    [[11685.5,13134.1,0],"La Rochelle Aerodrome",900],
-    [[2430.34,13330.8,0],"Tuvanaka Airbase",3000]
+    [[12478.5,17743.6,0],"Kalea Airport",1500],
+    [[11399.8,2475.52,0],"Kinduf Airport",1000],
+    [[3910.37,5972.27,0],"Abi Valley Airstrip",900],
+    [[14498,10087.4,0],"Crow Airfield",900]
 ];
